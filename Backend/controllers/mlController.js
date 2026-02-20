@@ -22,7 +22,7 @@ export const getMLPrediction = async (req, res) => {
 
     /* ===== CALL PYTHON ML API ===== */
     console.log("Calling Python ML API...");
-    const response = await axios.post("http://localhost:8000/predict", {
+    const response = await axios.post("https://fitness-ml-service.onrender.com/", {
       age: parseInt(age),
       height_cm: parseFloat(height),
       weight_kg: parseFloat(weight),
