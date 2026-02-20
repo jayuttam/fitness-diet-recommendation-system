@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
 import API from "../utils/api";
-import loginImage from "../assets/loginImage.png";   
+import loginImage from "../assets/LoginImage.png";   
 import "./Auth.css";
 
 const Login = () => {
