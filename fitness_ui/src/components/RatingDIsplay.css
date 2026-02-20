@@ -1,0 +1,45 @@
+.rating-display {
+  padding: 80px 20px;
+  text-align: center;
+  background: #f8f9ff;
+}
+
+.rating-summary {
+  margin-bottom: 40px;
+}
+
+.big-rating {
+  font-size: 50px;
+  font-weight: bold;
+  color: #6c63ff;
+}
+
+.stars .star {
+  font-size: 30px;
+  color: #ccc;
+}
+
+.stars .star.active {
+  color: #ffc107;
+}
+
+.review-list {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.review-card {
+  background: white;
+  padding: 20px;
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  text-align: left;
+}
+
+.mini-stars {
+  color: #ffc107;
+  margin: 5px 0;
+}

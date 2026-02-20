@@ -1,0 +1,134 @@
+/* ================= NAVBAR ================= */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  height: 75px;
+  padding: 0 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+/* ================= LOGO ================= */
+
+.navbar-logo img {
+  height: 150px;        /* control logo size */
+  width: auto;
+  object-fit: contain;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.navbar-logo img:hover {
+  transform: scale(1.05);
+}
+
+/* ================= LINKS ================= */
+
+.navbar-links {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  list-style: none;
+}
+
+/* Normal Links */
+.navbar-links a,
+.nav-link {
+  position: relative;
+  font-size: 15px;
+  font-weight: 500;
+  color: #475569;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Hover underline animation */
+.navbar-links a::after,
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(90deg, #4f46e5, #06b6d4);
+  transition: width 0.3s ease;
+}
+
+.navbar-links a:hover,
+.nav-link:hover {
+  color: #0f172a;
+}
+
+.navbar-links a:hover::after,
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* ================= PRIMARY BUTTON ================= */
+
+.nav-btn {
+  padding: 9px 22px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #4f46e5, #06b6d4);
+  color: #ffffff !important;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(79, 70, 229, 0.35);
+}
+
+/* ================= LOGOUT BUTTON ================= */
+
+.logout-btn {
+  background: #0f172a;
+}
+
+.logout-btn:hover {
+  background: #020617;
+  box-shadow: 0 10px 25px rgba(2, 6, 23, 0.35);
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 900px) {
+  .navbar {
+    padding: 0 30px;
+  }
+
+  .navbar-links {
+    gap: 18px;
+  }
+
+  .navbar-logo img {
+    height: 42px;
+  }
+}
+
+@media (max-width: 600px) {
+  .navbar {
+    padding: 0 20px;
+  }
+
+  .navbar-links {
+    gap: 14px;
+  }
+
+  .nav-btn {
+    padding: 8px 18px;
+    font-size: 13px;
+  }
+}

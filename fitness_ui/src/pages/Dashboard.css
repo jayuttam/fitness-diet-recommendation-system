@@ -1,0 +1,291 @@
+/* ==============================
+   DASHBOARD LAYOUT
+============================== */
+
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #0f172a; /* sidebar background */
+  font-family: "Inter", system-ui, -apple-system, sans-serif;
+}
+
+/* ==============================
+   MAIN CONTENT AREA
+============================== */
+
+.dashboard-content {
+  margin-left: 275px;                 /* sidebar width */
+  width: calc(100% - 275px);
+  min-height: 100vh;
+
+  padding: 32px 40px;
+  background: #f8fafc;
+
+  border-top-left-radius: 28px;
+  border-bottom-left-radius: 28px;
+
+  box-shadow: -12px 0 30px rgba(15, 23, 42, 0.12);
+  overflow-y: auto;
+}
+
+/* ==============================
+   PAGE HEADINGS
+============================== */
+
+.page-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #64748b;
+  margin-bottom: 32px;
+}
+
+/* ==============================
+   CARDS (Reusable Everywhere)
+============================== */
+
+.card {
+  background: #ffffff;
+  border-radius: 18px;
+  padding: 22px;
+  border: 1px solid #e2e8f0;
+
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  transition: all 0.25s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.12);
+}
+
+/* ==============================
+   GRIDS
+============================== */
+
+.grid-4 {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* ==============================
+   ICON BADGES
+============================== */
+
+.icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.icon-blue {
+  background: rgba(37, 99, 235, 0.15);
+  color: #2563eb;
+}
+
+.icon-purple {
+  background: rgba(139, 92, 246, 0.15);
+  color: #8b5cf6;
+}
+
+.icon-green {
+  background: rgba(34, 197, 94, 0.15);
+  color: #22c55e;
+}
+
+.icon-orange {
+  background: rgba(249, 115, 22, 0.15);
+  color: #f97316;
+}
+
+/* ==============================
+   TEXT STYLES
+============================== */
+
+.text-muted {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.text-value {
+  font-size: 24px;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.text-success {
+  color: #16a34a;
+}
+
+.text-danger {
+  color: #dc2626;
+}
+
+/* ==============================
+   BUTTONS
+============================== */
+
+.btn {
+  padding: 10px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.btn-primary {
+  background: #2563eb;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #1d4ed8;
+}
+
+.btn-outline {
+  background: transparent;
+  border: 1px solid #cbd5f5;
+  color: #2563eb;
+}
+
+.btn-outline:hover {
+  background: #eff6ff;
+}
+
+/* ==============================
+   UTILITIES
+============================== */
+
+.mt-1 { margin-top: 6px; }
+.mt-2 { margin-top: 12px; }
+.mt-3 { margin-top: 18px; }
+.mt-4 { margin-top: 24px; }
+
+.mb-1 { margin-bottom: 6px; }
+.mb-2 { margin-bottom: 12px; }
+.mb-3 { margin-bottom: 18px; }
+.mb-4 { margin-bottom: 24px; }
+
+/* ==============================
+   RESPONSIVE
+============================== */
+
+@media (max-width: 1200px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 900px) {
+  .dashboard-content {
+    margin-left: 0;
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .grid-3,
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 500px) {
+  .dashboard-content {
+    padding: 20px;
+  }
+
+  .page-title {
+    font-size: 22px;
+  }
+}
+/* ==============================
+   PROFILE FIXES (IMPORTANT)
+============================== */
+
+.profile-avatar-row {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.profile-avatar-box {
+  position: relative;
+  width: 120px;
+  height: 120px;
+}
+
+.profile-avatar-box img,
+.avatar-placeholder {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 22px;
+  color: #475569;
+}
+
+.avatar-upload-btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 36px;
+  height: 36px;
+  background: #2563eb;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+}
+
+.profile-avatar-text h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* ==============================
+   INPUT SIZE FIX
+============================== */
+
+form.card input,
+form.card select {
+  height: 44px;
+  padding: 10px 14px;
+  font-size: 14px;
+}
+
+/* Grid spacing fix */
+.grid-2 {
+  row-gap: 18px;
+}
