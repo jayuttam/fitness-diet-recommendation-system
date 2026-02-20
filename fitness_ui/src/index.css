@@ -3,11 +3,16 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Prevent automatic mobile scaling */
+body {
+  min-width: 1200px;   /* 👈 adjust to your desktop width */
+  overflow-x: auto;
 }
 
 /* Responsive images */
@@ -15,16 +20,18 @@ img, video {
   max-width: 100%;
   height: auto;
 }
+
+/* Disable mobile stacking */
 @media (max-width: 768px) {
   body {
-    padding: 10px;
-  }
-
-  button {
-    width: 100%;
+    min-width: 1200px;
   }
 
   .container {
-    flex-direction: column;
+    flex-direction: row !important;
+  }
+
+  button {
+    width: auto;
   }
 }
