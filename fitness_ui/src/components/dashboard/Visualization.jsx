@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../../utils/api";
 import {
   LineChart,
   Line,
@@ -50,8 +50,8 @@ const Visualization = () => {
         setLoading(true);
         
         // Fetch user profile with ML data
-        const userRes = await axios.get(
-          "http://localhost:5000/api/users/profile",
+        const userRes = await API.get(
+          "/api/users/profile",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -67,8 +67,8 @@ const Visualization = () => {
         }
 
         // Fetch daily logs
-        const logsRes = await axios.get(
-          "http://localhost:5000/api/users/daily-logs",
+        const logsRes = await API.get(
+          "/api/users/daily-logs",
           {
             headers: { Authorization: `Bearer ${token}` },
           }

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import API from "../../utils/api";
 import "./Rating.css";
 
 const Rating = () => {
@@ -23,7 +23,7 @@ const Rating = () => {
       setLoading(true);
       setMessage("");
 
-      await axios.post("http://localhost:5000/api/ratings", {
+      await API.post("/api/ratings", {
         rating,
         review,
         userId: user?._id,

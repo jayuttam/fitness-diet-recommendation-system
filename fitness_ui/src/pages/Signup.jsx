@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { FiX } from "react-icons/fi";
-import axios from "axios";
+import API from "../utils/api";
 import signupImage from "../assets/signupImage.png"; 
 import "./Auth.css";
 
@@ -39,8 +39,8 @@ const Signup = () => {
     }
 
     try {
-      await axios.post(
-        "http://localhost:5000/api/auth/register",
+      await API.post(
+        "/api/auth/register",
         {
           name: formData.name,
           email: formData.email.toLowerCase(),

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../utils/api";
 import './ExercisePlan.css';
 
 const EXERCISE_PLANS = {
@@ -291,8 +291,8 @@ const ExercisePlan = () => {
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:5000/api/users/profile",
+        const res = await API.get(
+          "\/api/users/profile",
           {
             headers: {
               Authorization: `Bearer ${token}`,

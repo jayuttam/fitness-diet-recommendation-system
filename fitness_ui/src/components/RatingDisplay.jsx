@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import API from "../utils/api";
 import "./RatingDisplay.css";
 
 const RatingDisplay = () => {
@@ -11,7 +11,7 @@ const RatingDisplay = () => {
 
   const fetchRatings = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/ratings");
+      const res = await API.get("/api/ratings");
       setRatings(res.data);
     } catch (error) {
       console.error("Failed to fetch ratings");

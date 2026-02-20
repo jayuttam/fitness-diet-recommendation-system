@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
+import API from "../../utils/api";
 import "./DailyLogPage.css";
 
 const DailyLogPage = () => {
@@ -23,8 +23,8 @@ const DailyLogPage = () => {
   /* ========= FETCH TODAY'S LOG ========= */
   const fetchTodayLog = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/users/daily-logs/today", // FIXED URL
+      const res = await API.get(
+        "/api/users/daily-logs/today", // FIXED URL
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -54,8 +54,8 @@ const DailyLogPage = () => {
   /* ========= FETCH RECENT LOGS ========= */
   const fetchRecentLogs = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/users/daily-logs", // FIXED URL
+      const res = await API.get(
+        "/api/users/daily-logs", // FIXED URL
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -88,8 +88,8 @@ const DailyLogPage = () => {
     setSaving(true);
 
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/users/daily-logs", // FIXED URL
+      const response = await API.post(
+        "/api/users/daily-logs", // FIXED URL
         {
           ...log,
           intake: parseInt(log.intake) || 0,
@@ -133,8 +133,8 @@ const DailyLogPage = () => {
     if (!window.confirm("Are you sure you want to delete this log?")) return;
 
     try {
-      await axios.delete(
-        `http://localhost:5000/api/users/daily-logs/${logId}`, // FIXED URL
+      await API.delete(
+        `/api/users/daily-logs/${logId}`, // FIXED URL
         {
           headers: {
             Authorization: `Bearer ${token}`,

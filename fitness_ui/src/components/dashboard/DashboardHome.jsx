@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import API from "../../utils/api";
 import "./DashboardHome.css";
 
 const DashboardHome = () => {
@@ -35,8 +35,8 @@ const DashboardHome = () => {
         setLoading(true);
         
         // Fetch user profile
-        const profileRes = await axios.get(
-          "http://localhost:5000/api/users/profile",
+        const profileRes = await  API.get(
+          "/api/users/profile",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -46,8 +46,8 @@ const DashboardHome = () => {
 
         // Fetch daily logs from the correct endpoint
         try {
-          const logsRes = await axios.get(
-            "http://localhost:5000/api/users/daily-logs", // UPDATED ENDPOINT
+          const logsRes = await  API.get(
+            "/api/users/daily-logs", // UPDATED ENDPOINT
             {
               headers: { Authorization: `Bearer ${token}` },
               params: { _t: Date.now() } // Force fresh data
@@ -75,8 +75,8 @@ const DashboardHome = () => {
 
         // Try to fetch today's log separately
         try {
-          const todayRes = await axios.get(
-            "http://localhost:5000/api/users/daily-logs/today",
+          const todayRes = await  API.get(
+            "/api/users/daily-logs/today",
             {
               headers: { Authorization: `Bearer ${token}` },
             }
@@ -124,15 +124,15 @@ const DashboardHome = () => {
       
       // Refresh both logs and today's log
       const [logsRes, todayRes] = await Promise.all([
-        axios.get(
-          "http://localhost:5000/api/users/daily-logs",
+         API.get(
+          "/api/users/daily-logs",
           {
             headers: { Authorization: `Bearer ${token}` },
             params: { _t: Date.now() }
           }
         ),
-        axios.get(
-          "http://localhost:5000/api/users/daily-logs/today",
+         API.get(
+          "/api/users/daily-logs/today",
           {
             headers: { Authorization: `Bearer ${token}` },
           }
@@ -369,8 +369,8 @@ const DashboardHome = () => {
     
     try {
       setLoading(true);
-      const response = await axios.post(
-        "http://localhost:5000/api/ml/predict",
+      const response = await  API.post(
+        "/api/ml/predict",
         {
           height: user.height,
           weight: user.weight,
@@ -398,8 +398,8 @@ const DashboardHome = () => {
         
         // Update user profile with new ML data
         try {
-          await axios.patch(
-            "http://localhost:5000/api/users/update-ml",
+          await API.patch(
+            "/api/users/update-ml",
             { mlResult: newMLResult },
             { headers: { Authorization: `Bearer ${token}` } }
           );
@@ -473,7 +473,7 @@ const DashboardHome = () => {
           </div>
           
           <div className="header-actions">
-            <button 
+            {/* <button 
               onClick={refreshDashboardData}
               className="refresh-header-btn"
               disabled={refreshing}
@@ -487,8 +487,8 @@ const DashboardHome = () => {
                   Refresh
                 </>
               )}
-            </button>
-            {mlResult?.source === "calculated" && (
+            </button> */}
+            {/* {mlResult?.source === "calculated" && (
               <span className="plan-badge calculated">
                 <span className="badge-icon">📊</span>
                 Calculated Plan
@@ -497,9 +497,9 @@ const DashboardHome = () => {
             {mlResult?.source === "ai_model" && (
               <span className="plan-badge ai">
                 <span className="badge-icon">🤖</span>
-                AI Generated
+                 ML Generated
               </span>
-            )}
+            )} */}
           </div>
         </div>
       </div>

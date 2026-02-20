@@ -1,5 +1,5 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
-import axios from "axios";
+import API from "../../utils/api";
 import { FiCamera } from "react-icons/fi";
 import "./Profile.css";
 
@@ -27,8 +27,8 @@ const Profile = () => {
   /* ========= FETCH PROFILE ========= */
   const fetchProfile = async () => {
     try {
-      const res = await axios.get(
-        "http://localhost:5000/api/users/profile",
+      const res = await API.get(
+        "/api/users/profile",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -134,8 +134,8 @@ const Profile = () => {
 
     setGeneratingAI(true);
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/ml/predict",
+      const response = await API.post(
+        "/api/ml/predict",
         {
           age,
           height: formData.height,
@@ -205,8 +205,8 @@ const Profile = () => {
         dataToSave.ml = mlData;
       }
 
-      const res = await axios.put(
-        "http://localhost:5000/api/users/profile",
+      const res = await API.put(
+        "/api/users/profile",
         dataToSave,
         {
           headers: {
