@@ -40,6 +40,7 @@ app.use(express.urlencoded({ extended: true }));
 const allowedOrigins = [
   "http://localhost:5173",
   "https://fitness-diet-recommendation-system-livid.vercel.app",
+  "https://fitness-diet-recommendation-system-self.vercel.app"
 ];
 
 app.use(
