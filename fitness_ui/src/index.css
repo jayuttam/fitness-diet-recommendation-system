@@ -9,9 +9,9 @@ html, body {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-/* Prevent automatic mobile scaling */
+/* Desktop base - maintains your original layout */
 body {
-  min-width: 1200px;   /* 👈 adjust to your desktop width */
+  min-width: 1200px;
   overflow-x: auto;
 }
 
@@ -21,17 +21,122 @@ img, video {
   height: auto;
 }
 
-/* Disable mobile stacking */
-@media (max-width: 768px) {
+/* Tablet and Mobile Styles */
+@media (max-width: 1199px) {
   body {
-    min-width: 1200px;
+    min-width: auto; /* Remove desktop min-width */
+    width: 100%;
   }
-
+  
   .container {
-    flex-direction: row !important;
+    flex-direction: column !important; /* Stack elements vertically on mobile */
+    padding: 0 15px;
   }
-
+  
+  /* Make buttons full width on mobile for better touch targets */
   button {
-    width: auto;
+    width: 100%;
+    min-height: 44px; /* Minimum touch target size */
+    margin: 5px 0;
+  }
+  
+  /* Improve readability on smaller screens */
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  h2 {
+    font-size: 1.5rem;
+  }
+  
+  p {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+  
+  /* Adjust form inputs for mobile */
+  input, select, textarea {
+    width: 100%;
+    min-height: 44px;
+    font-size: 16px; /* Prevents zoom on iOS */
+  }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 10px;
+  }
+  
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 1.3rem;
+  }
+  
+  /* Stack grid items if you're using any */
+  .grid {
+    grid-template-columns: 1fr !important;
+  }
+  
+  /* Adjust tables for mobile */
+  table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}
+
+/* Optional: Add meta viewport in your HTML head */
+/* Make sure to add this in your HTML <head>:
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+*/
+
+/* Fix for iOS zoom on input focus */
+@media screen and (-webkit-min-device-pixel-ratio: 0) { 
+  select,
+  textarea,
+  input {
+    font-size: 16px;
+  }
+}
+
+/* Improve touch targets for interactive elements */
+a, button, .clickable {
+  min-height: 44px;
+  min-width: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Common flexbox adjustments for mobile */
+.flex-row {
+  flex-direction: row;
+}
+
+@media (max-width: 1199px) {
+  .flex-row {
+    flex-direction: column;
+  }
+  
+  /* Space out elements better */
+  .flex-item {
+    margin: 5px 0;
+    width: 100%;
+  }
+}
+
+/* Card-like elements for mobile */
+.card {
+  margin: 10px;
+}
+
+@media (max-width: 1199px) {
+  .card {
+    margin: 10px 0;
+    width: 100%;
   }
 }
