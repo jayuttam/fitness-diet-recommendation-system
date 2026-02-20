@@ -3,7 +3,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
-import ProtectedRoute from "./routes/ProtectedRoute";
+import ProtectedRoute from "./Routes/ProtectedRoute";
 
 function App() {
   return (
