@@ -3,62 +3,28 @@
   box-sizing: border-box;
 }
 
-html, body {
+body {
   margin: 0;
   padding: 0;
-  width: 100%;
   overflow-x: hidden;
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
 }
 
-/* Navbar */
-.navbar {
-  position: sticky;   /* 👈 keeps visible */
-  top: 0;
-  z-index: 1000;
-  width: 100%;
-  background: white;  /* prevent transparency issues */
-}
-
-/* Dashboard Layout */
-.dashboard {
-  display: flex;
-  min-height: 100vh;
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  padding: 20px;
-}
-
-/* Prevent content hiding navbar */
-.dashboard,
-.main-content {
-  overflow: visible;
-}
-
-/* Images responsive */
-img {
+/* Responsive images */
+img, video {
   max-width: 100%;
   height: auto;
 }
-
-/* ✅ MOBILE FIX */
 @media (max-width: 768px) {
-
-  .dashboard {
-    flex-direction: column;   /* stack layout */
+  body {
+    padding: 10px;
   }
 
-  .navbar {
-    position: fixed;   /* 👈 BEST for mobile */
-    top: 0;
-    left: 0;
+  button {
+    width: 100%;
   }
 
-  .main-content {
-    padding: 70px 15px 15px;  /* 👈 space for fixed navbar */
+  .container {
+    flex-direction: column;
   }
-
 }
