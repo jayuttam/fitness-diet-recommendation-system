@@ -1,0 +1,30 @@
+/* Global Reset */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+/* Responsive images */
+img, video {
+  max-width: 100%;
+  height: auto;
+}
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .container {
+    flex-direction: column;
+  }
+}
