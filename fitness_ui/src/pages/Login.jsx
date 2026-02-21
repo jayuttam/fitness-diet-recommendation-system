@@ -35,11 +35,11 @@ const Login = () => {
       // ✅ Save token
       localStorage.setItem("token", data.token);
 
-      // ✅ Handle backend variations
-      const userData = data.user || data;
+      // ✅ Extract user
+      const userData = data.user;
 
       // ✅ Ensure _id exists
-      if (!userData._id) {
+      if (!userData?._id) {
         throw new Error("User data missing _id");
       }
 
@@ -62,7 +62,6 @@ const Login = () => {
 
   return (
     <div className="auth-wrapper">
-      {/* LEFT SIDE */}
       <div className="auth-left">
         <div className="auth-card">
           <button
@@ -119,7 +118,6 @@ const Login = () => {
         </div>
       </div>
 
-      {/* RIGHT SIDE */}
       <div className="auth-right">
         <img
           src={loginImage}
