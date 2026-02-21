@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiEye, FiEyeOff } from "react-icons/fi";
-import { FiX } from "react-icons/fi";
+import { FiEye, FiEyeOff, FiX } from "react-icons/fi";
 import API from "../utils/api";
-import loginImage from "../assets/LoginImage.png";   
+import loginImage from "../assets/LoginImage.png";
 import "./Auth.css";
 
 const Login = () => {
@@ -19,30 +18,51 @@ const Login = () => {
     setError("");
 
     try {
-      const response = await API.post(
-        "/api/auth/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await API.post("/api/auth/login", {
+        email,
+        password,
+      });
 
-      // 🔐 Save token & user
-      localStorage.setItem("token", response.data.token);
-      localStorage.setItem("user", JSON.stringify(response.data.user));
+      console.log("LOGIN RESPONSE:", response.data);
 
-      // Redirect to dashboard
+      const data = response.data;
+
+      // ✅ Ensure token exists
+      if (!data.token) {
+        throw new Error("Token missing from server response");
+      }
+
+      // ✅ Save token
+      localStorage.setItem("token", data.token);
+
+      // ✅ Handle backend variations
+      const userData = data.user || data;
+
+      // ✅ Ensure _id exists
+      if (!userData._id) {
+        throw new Error("User data missing _id");
+      }
+
+      // ✅ Save user
+      localStorage.setItem("user", JSON.stringify(userData));
+
+      // ✅ Redirect
       navigate("/dashboard");
+
     } catch (err) {
+      console.error("Login Error:", err);
+
       setError(
-        err.response?.data?.message || "Login failed. Try again."
+        err.response?.data?.message ||
+        err.message ||
+        "Login failed. Try again."
       );
     }
   };
 
   return (
     <div className="auth-wrapper">
-      {/* LEFT SIDE - FORM */}
+      {/* LEFT SIDE */}
       <div className="auth-left">
         <div className="auth-card">
           <button
@@ -51,6 +71,7 @@ const Login = () => {
           >
             <FiX size={20} />
           </button>
+
           <h2>Log in to FitPredict</h2>
           <p className="auth-subtitle">
             Access your personalized dashboard
@@ -75,6 +96,7 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 required
               />
+
               <span
                 className="toggle-password"
                 onClick={() => setShowPassword(!showPassword)}
@@ -97,7 +119,7 @@ const Login = () => {
         </div>
       </div>
 
-      {/* RIGHT SIDE - IMAGE */}
+      {/* RIGHT SIDE */}
       <div className="auth-right">
         <img
           src={loginImage}
