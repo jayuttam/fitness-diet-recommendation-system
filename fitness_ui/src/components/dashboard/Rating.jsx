@@ -14,6 +14,13 @@ const Rating = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // ✅ Session safety
+    if (!user?._id) {
+      setMessage("Session expired. Please login again.");
+      return;
+    }
+
+    // ✅ Rating validation
     if (rating === 0) {
       setMessage("Please select a rating ⭐");
       return;
@@ -26,15 +33,19 @@ const Rating = () => {
       await API.post("/api/ratings", {
         rating,
         review,
-        userId: user?._id,
+        userId: user._id,   // ✅ EXACTLY what backend expects
       });
 
       setMessage("Thanks for your review! ⭐");
       setRating(0);
       setReview("");
+
     } catch (error) {
+      console.error("Rating Error:", error);
+
       setMessage(
-        error.response?.data?.message || "You already submitted a rating."
+        error.response?.data?.message ||
+        "Server error. Please try again."
       );
     } finally {
       setLoading(false);
@@ -60,7 +71,6 @@ const Rating = () => {
           Logged in as: <strong>{user.name}</strong>
         </p>
 
-        {/* STAR RATING */}
         <div className="star-rating">
           {[1, 2, 3, 4, 5].map((star) => (
             <span
