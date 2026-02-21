@@ -4,6 +4,9 @@ import Rating from "../models/Rating.js";
 
 const router = express.Router();
 
+//
+// ✅ CREATE RATING
+//
 router.post("/", async (req, res) => {
   try {
     console.log("Incoming rating:", req.body);
@@ -16,7 +19,6 @@ router.post("/", async (req, res) => {
       });
     }
 
-    // ✅ Prevent ObjectId crash
     if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
       return res.status(400).json({
         message: "Invalid userId",
@@ -45,6 +47,26 @@ router.post("/", async (req, res) => {
     res.status(500).json({
       message: "Server error",
       error: error.message,
+    });
+  }
+});
+
+//
+// ✅ GET ALL RATINGS  ⭐⭐⭐⭐⭐
+//
+router.get("/", async (req, res) => {
+  try {
+    const ratings = await Rating.find()
+      .populate("user", "name")
+      .sort({ createdAt: -1 });
+
+    res.json(ratings);
+
+  } catch (error) {
+    console.error("Rating GET Error:", error);
+
+    res.status(500).json({
+      message: "Server error",
     });
   }
 });
