@@ -27,26 +27,26 @@ const Login = () => {
 
       const data = response.data;
 
-      // ✅ Ensure token exists
+      //  Ensure token exists
       if (!data.token) {
         throw new Error("Token missing from server response");
       }
 
-      // ✅ Save token
+      //  Save token
       localStorage.setItem("token", data.token);
 
-      // ✅ Extract user
+      //  Extract user
       const userData = data.user;
 
-      // ✅ Ensure _id exists
+      // Ensure _id exists
       if (!userData?._id) {
         throw new Error("User data missing _id");
       }
 
-      // ✅ Save user
+      //  Save user
       localStorage.setItem("user", JSON.stringify(userData));
 
-      // ✅ Redirect
+      // Redirect
       navigate("/dashboard");
 
     } catch (err) {
