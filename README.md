@@ -36,5 +36,3 @@ A full-stack **MERN + Machine Learning** application that provides personalized 
 - AI-based fitness coach
 - Integration with wearable devices
 
-## 📌 Project Status
-🚧 **In Progress** – Development ongoing, code will be uploaded soon.
